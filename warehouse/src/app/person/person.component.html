@@ -7,11 +7,12 @@
           {{ editModeTitle }}
         </h2>
       </ng-template>
-      <div class="text-end col-sm-5 lh-lg"
-           *ngIf="1 && !editMode">
-        <i class="fa fa-plus m-1 fa-2x" (click)="switchToEditMode()"></i>
-        <i class="fa fa-search m-1 fa-2x"></i>
-        <i class="fa fa-refresh m-1 fa-2x"></i>
+      <div class="text-end col-sm-5 lh-lg">
+        <app-header-tools
+          (editModeEmitter)="editMode=$event"
+          (reloadEmitter)="reload()"
+          [editMode]="editMode"
+        ></app-header-tools>
       </div>
     </header>
     <article class="">
@@ -26,7 +27,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="" *ngFor="let person of persons">
+        <tr class="" *ngFor="let person of persons"
+            (dblclick)="switchToEditMode(person.id)"
+        >
           <td> {{ person.firstName }}</td>
           <td> {{ person.lastName }}</td>
           <td *ngIf="person.gender; else female">مرد</td>
@@ -41,7 +44,11 @@
         </tbody>
       </table>
       <div class="" *ngIf="editMode">
-        <app-person-edit></app-person-edit>
+        <app-person-edit
+          [editLoadId]="editLoadId"
+          (editModeEmitter)="editMode = $event"
+        >
+        </app-person-edit>
       </div>
     </article>
   </div>

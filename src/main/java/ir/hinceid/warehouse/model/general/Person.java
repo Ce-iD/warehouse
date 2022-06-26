@@ -11,8 +11,10 @@ import javax.persistence.Table;
 @Entity
 @Getter
 @Setter
-@Table(name = "person")
+@Table(name = Person.tableName)
 public class Person extends BaseClass {
+
+    public static final String tableName = "person";
 
     @NotNull
     @Column(name = "first_name")
@@ -24,7 +26,7 @@ public class Person extends BaseClass {
 
     @NotNull
     @Column(name = "user_name")
-    public String username;
+    public String userName;
 
     @NotNull
     @Column(name = "password")
@@ -35,5 +37,5 @@ public class Person extends BaseClass {
     public Boolean status;
 
     @Column(name = "gender")
-    public Boolean gender;
+    public Integer gender;
 }

@@ -18,7 +18,6 @@ export class WarehouseService {
   }
 
   saveWarehouse(warehouse: Warehouse): Observable<Object> {
-    console.log(warehouse);
     return this.httpClient.post(`${this.baseUrl}/save`, warehouse);
   }
 }

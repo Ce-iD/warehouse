@@ -3,9 +3,9 @@
     <header class="bg-light row m-0">
       <h2 class="col-sm-7 lh-4"> {{ title }} {{ warehouseTitle }}</h2>
       <div class="text-end col-sm-5 lh-lg">
-        <i class="fa fa-plus m-1 fa-2x"></i>
-        <i class="fa fa-search m-1 fa-2x"></i>
-        <i class="fa fa-refresh m-1 fa-2x"></i>
+        <app-header-tools
+          (editModeEmitter)="editMode=$event"
+        ></app-header-tools>
       </div>
     </header>
     <article class="">

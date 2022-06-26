@@ -21,7 +21,7 @@ public class BaseClass {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
-    @Column(name = "id", updatable = false, nullable = false, unique = true)
+    @Column(name = "id", updatable = false, nullable = false, unique = true, length = 16)
     private UUID id;
 
 //    @NotNull
@@ -29,6 +29,6 @@ public class BaseClass {
     private Date createdDate;
 
 //    @NotNull
-    @Column(name = "created_user")
+    @Column(name = "created_user", length = 16)
     private UUID CreatedUser;
 }

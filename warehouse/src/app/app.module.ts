@@ -16,6 +16,7 @@ import { WareComponent } from './ware/ware.component';
 import { PersonComponent } from './person/person.component';
 import {HttpClientModule} from "@angular/common/http";
 import {PersonEditComponent} from "./person/person-edit.component";
+import { HeaderToolsComponent } from './utility/header-tools/header-tools.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {PersonEditComponent} from "./person/person-edit.component";
     PersonComponent,
     PersonComponent,
     PersonEditComponent,
+    HeaderToolsComponent,
   ],
   imports: [
     BrowserModule,

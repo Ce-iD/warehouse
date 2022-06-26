@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
+import {Person} from './person';
+import {PersonService} from './person.service';
 
 @Component({
   selector: 'app-person-edit',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonEditComponent implements OnInit {
 
-  constructor() { }
+  public person: Person;
+  @Input() public personId: string = '';
+  @Output() editModeEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  constructor(private personService: PersonService) {
+    this.person = new Person();
+  }
 
   ngOnInit(): void {
   }
 
+  onLoad() {
+    this.personService.loadPerson(this.personId).subscribe(person => {
+      this.person = person;
+    });
+  }
+
+  save() {
+    console.log(this.person);
+    this.personService.savePerson(this.person).subscribe(data => {
+    })
+  }
 }

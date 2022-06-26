@@ -1,1 +1,57 @@
-<p>users-edit works!</p>
+<div class="row m-0 p-0 col-12 col-sm-12">
+
+  <div class="row m-0 mt-3 p-0 col-6 col-sm-6">
+    <label class="col-12 col-sm-12 control-label text-danger">نام</label>
+    <div class="col-12 col-sm-12">
+      <input type="text" class="form-control" [(ngModel)]="person.firstName">
+    </div>
+    <label class="col-12 col-sm-12 control-label text-danger">نام کاربری</label>
+    <div class="col-12 col-sm-12">
+      <input type="text" class="form-control" [(ngModel)]="person.userName">
+    </div>
+  </div>
+  <div class="row m-0 mt-3 p-0 col-6 col-sm-6">
+    <label class="col-12 col-sm-12 control-label text-danger">نام خانوادگی</label>
+    <div class="col-12 col-sm-12">
+      <input type="text" class="form-control" [(ngModel)]="person.lastName">
+    </div>
+    <label class="col-12 col-sm-12 control-label text-danger">رمز عبور</label>
+    <div class="col-12 col-sm-12">
+      <input type="text" class="form-control" [(ngModel)]="person.password">
+    </div>
+  </div>
+  <div class="row m-0 mt-3 p-0 col-6 col-sm-6">
+    <label class="col-12 col-sm-12 control-label text-danger">جنسیت</label>
+    <select class="col-10 col-sm-10 form-control" [(ngModel)]="person.gender">
+      <option value="1">مرد</option>
+      <option value="0">زن</option>
+    </select>
+  </div>
+  <div class="row m-0 mt-3 p-0 col-6 col-sm-6">
+    <label class="col-12 col-sm-12 control-label text-danger">وضعیت</label>
+    <div class="col-10 col-sm-10">
+      فعال
+      <input type="checkbox" [(ngModel)]="person.status">
+    </div>
+  </div>
+  <div class="row m-0 mt-3 p-0 col-12 col-sm-12">
+    <span style="width: 8rem;">
+    <button class="btn btn-primary w-100" (click)="save()">
+      ثبت
+      <i class="fa fa-save"></i>
+    </button>
+    </span>
+    <span style="width: 8rem;">
+    <button class="btn btn-danger w-100">
+      بازنشانی
+      <i class="fa fa-refresh"></i>
+    </button>
+    </span>
+    <span style="width: 8rem;">
+    <button class="btn btn-warning w-100" (click)="editModeEmitter.emit(false)">
+      بازگشت
+      <i class="fa fa-backspace"></i>
+    </button>
+    </span>
+  </div>
+</div>

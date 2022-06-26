@@ -19,10 +19,6 @@ export class WarehouseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.warehouseService.getAllWarehouses().subscribe(warehouses => {
-      console.log(warehouses);
-      this.warehouses = warehouses;
-    });
   /*  this.warehouses = [
       {
         id: 1,
@@ -53,6 +49,13 @@ export class WarehouseComponent implements OnInit {
         mas: 5,
       },
     ];*/
+  }
+
+  onLoad() {
+    this.warehouseService.getAllWarehouses().subscribe(warehouses => {
+      console.log(warehouses);
+      this.warehouses = warehouses;
+    });
   }
 
   switchToEditMode() {

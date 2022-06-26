@@ -10,9 +10,9 @@
       <div class="text-end col-sm-5 lh-lg"
            *ngIf="!editMode">
         <span>
-        <h4><i class="bi bi-plus m-1" (click)="switchToEditMode()"></i></h4>
-        <h4><i class="bi bi-search m-1"></i></h4>
-        <i class="bi bi-reload m-1 fa-2x"></i>
+        <app-header-tools
+          (editModeEmitter)="editMode=$event"
+        ></app-header-tools>
         </span>
       </div>
     </header>

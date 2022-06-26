@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { PersonService } from './person.service';
+import {PersonService} from './person.service';
 import {Person} from "./person";
 
 @Component({
@@ -9,68 +9,41 @@ import {Person} from "./person";
 })
 export class PersonComponent implements OnInit {
 
-  public persons: Person[] | undefined;
+  public persons?: Person[];
+  public personSearch?: Person;
   public title: string = 'کاربران';
   public userTitle: string | undefined;
   @Input() sourceLoad: boolean = true;
   public editModeTitle: string = 'ویرایش کاربر';
   public editMode: boolean = false;
+  editLoadId?: string;
 
   constructor(private personService: PersonService) {
-    // this.persons = new Person();
+    this.personSearch = new Person();
   }
 
   ngOnInit(): void {
-   /* this.persons = [
-      {
-        id: '1',
-        firstName: 'رحمان',
-        lastName: 'زال',
-        userName: 'zal',
-        status: true,
-        gender: 1,
-      },
-      {
-        id: '2',
-        firstName: 'سلمان',
-        lastName: 'قاسمی',
-        userName: 'ghasemi',
-        status: true,
-        gender: 1,
-      },
-      {
-        id: '3',
-        firstName: 'زهرا',
-        lastName: 'رنجبر',
-        userName: 'ranjbar',
-        status: true,
-        gender: 2,
-      },
-      {
-        id: '4',
-        firstName: 'رقیه',
-        lastName: 'سعادتی',
-        userName: 'saadati',
-        status: false,
-        gender: 1,
-      },
-      {
-        id: '5',
-        firstName: 'احمد',
-        lastName: 'سعیدی',
-        userName: 'saeedi',
-        status: true,
-        gender: 2,
-      },
-    ]*/
+    this.onLoad();
+  }
+
+  switchToEditMode(loadId: any) {
+    this.editLoadId = loadId;
+    this.editModeTitle = 'تعریف کاربر جدید';
+    this.editMode = true;
+  }
+
+  onLoad() {
     this.personService.getAllPerson().subscribe(persons => {
       this.persons = persons;
       console.log(persons);
     });
   }
 
-  switchToEditMode() {
-    editModeTitle: 'تعریف کاربر جدید';
-    this.editMode = true;
+  reload(): void {
+    if (this.editMode) {
+      console.log('if');
+    } else {
+      this.onLoad();
+    }
   }
 }

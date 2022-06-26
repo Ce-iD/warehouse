@@ -11,6 +11,7 @@ export class WarehouseCapacityComponent implements OnInit {
   public warehouseCapacity: WarehouseCapacity[] | undefined;
   public title: string = 'موجودی';
   public warehouseTitle: string = 'تمام انبارها';
+  public editMode: boolean = false;
 
   constructor() { }
 
