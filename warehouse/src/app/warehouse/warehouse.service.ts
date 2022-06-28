@@ -17,7 +17,15 @@ export class WarehouseService {
     return this.httpClient.get<Warehouse[]>(`${this.baseUrl}/getAll`);
   }
 
+  loadWarehouse(warehouseId: string): Observable<Warehouse> {
+    return this.httpClient.get<Warehouse>(`${this.baseUrl}/load/${warehouseId}`);
+  }
+
   saveWarehouse(warehouse: Warehouse): Observable<Object> {
     return this.httpClient.post(`${this.baseUrl}/save`, warehouse);
+  }
+
+  deleteWarehouse(warehouse: Warehouse): Observable<any> {
+    return this.httpClient.delete(`${this.baseUrl}/delete/${warehouse.id}`);
   }
 }

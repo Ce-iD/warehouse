@@ -9,56 +9,54 @@ import {WarehouseService} from './warehouse.service';
 })
 export class WarehouseComponent implements OnInit {
 
-  public warehouses: Warehouse[] | undefined;
+  public warehouses?: Warehouse[];
+  public warehouseSearch?: Warehouse;
   public title: string = 'انبار';
   public warehouseTitle: string = 'بهار';
   @Input() sourceLoad: boolean = true;
+  public editModeTitle: string = 'ویرایش انبار';
   public editMode: boolean = false;
+  public editLoadId: string = '';
 
-  constructor(private warehouseService: WarehouseService) {
+  constructor(
+    private warehouseService: WarehouseService
+  ) {
+    this.warehouseSearch = new Warehouse();
   }
 
   ngOnInit(): void {
-  /*  this.warehouses = [
-      {
-        id: 1,
-        name: 'مرکزی',
-        capacity: 2000,
-        location: 'ساختمان مرکزی',
-        mas: 1,
-      },
-      {
-        id: 2,
-        name: 'شماره یک',
-        capacity: 700,
-        location: 'ساختمان یک',
-        mas: 3,
-      },
-      {
-        id: 3,
-        name: 'شکوفه',
-        capacity: 800,
-        location: 'ساختمان شکوفه',
-        mas: 2,
-      },
-      {
-        id: 4,
-        name: 'بهار',
-        capacity: 600,
-        location: 'ساختمان بهار',
-        mas: 5,
-      },
-    ];*/
+    this.onLoad();
   }
 
   onLoad() {
     this.warehouseService.getAllWarehouses().subscribe(warehouses => {
-      console.log(warehouses);
       this.warehouses = warehouses;
     });
   }
 
-  switchToEditMode() {
+  reload(): void {
+    if (this.editMode) {
+      console.log('if');
+    } else {
+      this.onLoad();
+    }
+  }
+
+  editModeBack(editMode: boolean): void {
+    this.editLoadId = '';
+    this.editMode = editMode;
+    this.onLoad();
+  }
+
+  deleteWarehouse(warehouse: Warehouse) {
+    this.warehouseService.deleteWarehouse(warehouse).subscribe(data => {
+      this.onLoad();
+    });
+  }
+
+  switchToEditMode(loadId: string) {
+    this.editLoadId = loadId;
+    this.editModeTitle = 'تعریف کاربر جدید';
     this.editMode = true;
   }
 

@@ -1,4 +1,4 @@
-package ir.hinceid.warehouse.controller;
+package ir.hinceid.warehouse.controller.warehouse;
 
 import ir.hinceid.warehouse.model.warhouse.Ware;
 import ir.hinceid.warehouse.repository.interfaces.IWareRepository;

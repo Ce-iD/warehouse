@@ -7,11 +7,12 @@
           تعریف انبار جدید
         </h2>
       </ng-template>
-      <div class="text-end col-sm-5 lh-lg"
-           *ngIf="!editMode">
+      <div class="text-end col-sm-5 lh-lg">
         <span>
         <app-header-tools
-          (editModeEmitter)="editMode=$event"
+          (editModeEmitter)="editModeBack($event)"
+          (reloadEmitter)="reload()"
+          [editMode]="editMode"
         ></app-header-tools>
         </span>
       </div>
@@ -25,10 +26,12 @@
           <th>ظرفیت</th>
           <th>مکان</th>
           <th>مسئول</th>
+          <th>عملیات</th>
         </tr>
         </thead>
         <tbody>
-        <tr class="" *ngFor="let warehouse of warehouses">
+        <tr class="" *ngFor="let warehouse of warehouses"
+        (dblclick)="switchToEditMode(warehouse.id)">
           <td> {{ warehouse.name }}</td>
           <td> {{ warehouse.capacity }}</td>
           <td> {{ warehouse.location }}</td>
@@ -36,11 +39,14 @@
           <ng-template #deactive>
             <td> غیر فعال</td>
           </ng-template>
+            <td><i class="fa fa-trash text-danger" (click)="deleteWarehouse(warehouse)"></i></td>
         </tr>
         </tbody>
       </table>
       <div class="" *ngIf="editMode">
-        <app-warehouse-edit></app-warehouse-edit>
+        <app-warehouse-edit
+          [warehouseId]="editLoadId"
+          (editModeEmitter)="editModeBack($event)"></app-warehouse-edit>
       </div>
     </article>
   </div>

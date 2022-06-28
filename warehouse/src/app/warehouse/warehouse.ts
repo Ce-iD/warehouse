@@ -1,8 +1,13 @@
 export class Warehouse {
-  public id: number | undefined;
-  public name: string | undefined;
-  public capacity: number | undefined;
-  public location: string | undefined;
-  public mas: number | undefined;
-  public status: boolean | undefined;
+  constructor(
+    public id: string = '',
+    public name?: string,
+    public capacity?: number,
+    public location?: string,
+    public mas?: number,
+    public status?: boolean,
+  ) {
+    this.id = '';
+  }
 }
+

@@ -1,7 +1,7 @@
 package ir.hinceid.warehouse.model.warhouse;
 
 import com.sun.istack.NotNull;
-import ir.hinceid.warehouse.model.general.BaseClass;
+import ir.hinceid.warehouse.model.general.BaseModel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Table(name = "ware")
-public class Ware extends BaseClass {
+public class Ware extends BaseModel {
 
     @NotNull
     @Column(name = "name")

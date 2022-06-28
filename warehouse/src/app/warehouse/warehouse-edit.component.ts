@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Warehouse} from "./warehouse";
 import {WarehouseService} from './warehouse.service';
 
@@ -10,18 +10,39 @@ import {WarehouseService} from './warehouse.service';
 export class WarehouseEditComponent implements OnInit {
 
   public warehouse: Warehouse;
+  public editLoadId?: string;
+  @Input() public warehouseId: string = '';
+  @Output() public editModeEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private warehouseService: WarehouseService) {
+  constructor(
+    private warehouseService: WarehouseService
+  ) {
     this.warehouse = new Warehouse;
   }
 
   ngOnInit(): void {
+    if (this.warehouseId != '')
+      this.onLoad();
+  }
+
+  onLoad() {
+    this.warehouse = new Warehouse();
+    this.warehouseService.loadWarehouse(this.warehouseId).subscribe(warehouse => {
+      this.warehouse = warehouse;
+    })
   }
 
   save() {
-    console.log(this.warehouse);
-    this.warehouseService.saveWarehouse(this.warehouse).subscribe(data =>{
-      console.log(data);
+    this.warehouseService.saveWarehouse(this.warehouse).subscribe(data => {
+      success: {
+        this.switchToGrid();
+      }
     });
+  }
+
+  switchToGrid() {
+    console.log('switch');
+    this.warehouse = new Warehouse();
+    this.editModeEmitter.emit(false);
   }
 }

@@ -1,6 +1,6 @@
 package ir.hinceid.warehouse.model.warhouse;
 
-import ir.hinceid.warehouse.model.general.BaseClass;
+import ir.hinceid.warehouse.model.general.BaseModel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Setter
 @Table(name = "warehouse")
 
-public class Warehouse extends BaseClass {
+public class Warehouse extends BaseModel {
 
     @Column(name = "name")
     public String name;
