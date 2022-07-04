@@ -12,24 +12,20 @@ export class PersonComponent implements OnInit {
   public persons?: Person[];
   public personSearch?: Person;
   public title: string = 'کاربران';
-  public userTitle: string | undefined;
+  public personTitle: string = '';
   @Input() sourceLoad: boolean = true;
   public editModeTitle: string = 'ویرایش کاربر';
   public editMode: boolean = false;
-  editLoadId?: string;
+  public editLoadId: string = '';
 
-  constructor(private personService: PersonService) {
+  constructor(
+    private personService: PersonService
+  ) {
     this.personSearch = new Person();
   }
 
   ngOnInit(): void {
     this.onLoad();
-  }
-
-  switchToEditMode(loadId: any) {
-    this.editLoadId = loadId;
-    this.editModeTitle = 'تعریف کاربر جدید';
-    this.editMode = true;
   }
 
   onLoad() {
@@ -45,5 +41,23 @@ export class PersonComponent implements OnInit {
     } else {
       this.onLoad();
     }
+  }
+
+  editModeBack(editMode: boolean): void {
+    this.editLoadId = '';
+    this.editMode = editMode;
+    this.onLoad();
+  }
+
+  deletePerson(person: Person) {
+    this.personService.deletePerson(person).subscribe(data => {
+      console.log(data);
+    })
+  }
+
+  switchToEditMode(loadId: string) {
+    this.editLoadId = loadId;
+    this.editModeTitle = 'تعریف کاربر جدید';
+    this.editMode = true;
   }
 }

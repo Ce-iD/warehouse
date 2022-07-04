@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Table(name = Person.tableName)
-public class Person extends BaseClass {
+public class Person extends BaseModel {
 
     public static final String tableName = "person";
 

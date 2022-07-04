@@ -24,4 +24,8 @@ export class PersonService {
   savePerson(person: Person): Observable<Object> {
     return this.httpClient.post(`${this.baseUrl}/save`, person);
   }
+
+  deletePerson(person: Person): Observable<any> {
+    return this.httpClient.delete(`${this.baseUrl}/delete/${person.id}`);
+  }
 }

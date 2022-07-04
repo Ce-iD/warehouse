@@ -10,25 +10,38 @@ import {PersonService} from './person.service';
 export class PersonEditComponent implements OnInit {
 
   public person: Person;
+  public editLoadId?: string;
   @Input() public personId: string = '';
   @Output() editModeEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private personService: PersonService) {
+  constructor(
+    private personService: PersonService
+  ) {
     this.person = new Person();
   }
 
   ngOnInit(): void {
+    if (this.personId != '')
+      this.onLoad();
   }
 
   onLoad() {
+    this.person = new Person();
     this.personService.loadPerson(this.personId).subscribe(person => {
       this.person = person;
     });
   }
 
   save() {
-    console.log(this.person);
     this.personService.savePerson(this.person).subscribe(data => {
-    })
+      success: {
+        this.switchToGrid();
+      }
+    });
+  }
+
+  switchToGrid() {
+    this.person = new Person();
+    this.editModeEmitter.emit(false);
   }
 }

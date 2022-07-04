@@ -1,7 +1,7 @@
 <div class="m-3 p-2">
   <div class="card">
     <header class="bg-light row m-0">
-      <h2 class="col-sm-7 lh-4" *ngIf="!editMode; else editModeTitle">{{ title }} {{ userTitle }}</h2>
+      <h2 class="col-sm-7 lh-4" *ngIf="!editMode; else editModeTitle">{{ title }} {{ personTitle }}</h2>
       <ng-template #editModeTitle>
         <h2 class="col-sm-7 lh-4">
           {{ editModeTitle }}
@@ -9,7 +9,7 @@
       </ng-template>
       <div class="text-end col-sm-5 lh-lg">
         <app-header-tools
-          (editModeEmitter)="editMode=$event"
+          (editModeEmitter)="editModeBack($event)"
           (reloadEmitter)="reload()"
           [editMode]="editMode"
         ></app-header-tools>
@@ -45,8 +45,8 @@
       </table>
       <div class="" *ngIf="editMode">
         <app-person-edit
-          [editLoadId]="editLoadId"
-          (editModeEmitter)="editMode = $event"
+          [personId]="editLoadId"
+          (editModeEmitter)="editModeBack($event)"
         >
         </app-person-edit>
       </div>

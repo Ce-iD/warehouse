@@ -24,29 +24,80 @@
         <tr class>
           <th>نام انبار</th>
           <th>ظرفیت</th>
-          <th>مکان</th>
-          <th>مسئول</th>
+          <!--          <th>مکان</th>-->
+          <th>وضعيت</th>
           <th>عملیات</th>
         </tr>
         </thead>
         <tbody>
         <tr class="" *ngFor="let warehouse of warehouses"
-        (dblclick)="switchToEditMode(warehouse.id)">
+            (dblclick)="switchToEditMode(warehouse.id)">
           <td> {{ warehouse.name }}</td>
           <td> {{ warehouse.capacity }}</td>
-          <td> {{ warehouse.location }}</td>
+          <!--          <td> {{ warehouse.location }}</td>-->
           <td *ngIf="warehouse.status; else deactive"> فعال</td>
           <ng-template #deactive>
             <td> غیر فعال</td>
           </ng-template>
-            <td><i class="fa fa-trash text-danger" (click)="deleteWarehouse(warehouse)"></i></td>
+          <td>
+            <div>
+              <i class="fa fa-trash text-danger" (click)="deleteWarehouse(warehouse)"></i>&nbsp;
+              <i class="fa fa-arrow-up text-info" (click)="importWare(warehouse)"></i>&nbsp;
+              <i class="fa fa-arrow-down text-danger" (click)="exportWare(warehouse)"></i>
+            </div>
+          </td>
+          <!--          <td>-->
+          <!--          </td>-->
         </tr>
         </tbody>
       </table>
+      <div *ngIf="importDiv || exportDiv" style="position: absolute; top: 150px; left: 5px; z-index: 1;"
+           class="bg-whit e w-100">
+        <div style="height: 400px; width: 70%;" class="row m-0 p-0 bg-dark m-auto w-70">
+          <div class="col-12 col-sm-12 bg-light h-10 p-0">
+            <i class="fa fa-times pull-left m-3" (click)="closeModal()"></i>
+          </div>
+          <div *ngIf="importDiv" class="p-0">
+            <div class="row m-0 p-0 col-12 col-sm-12 bg-white">
+              <div class="col-6 col-sm-6">
+                <label class="control-label">کالا</label>
+                <select class="form-control">
+                  <option value="">كالای مد نظر را انتخاب نمایید</option>
+                  <option *ngFor="let ware of wares" value="{{ ware.id }}">{{ ware.name }}</option>
+                </select>
+              </div>
+              <div class="col-6 col-sm-6">
+                <label class="control-label">تعداد</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="row m-0 p-0 col-12 col-sm-12 bg-white">
+              <div class="col-6 col-sm-6">
+                <label class="control-label">سریال</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="col-6 col-sm-6">
+                <label class="control-label">شماره قرارداد</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="row m-0 p-0 col-12 col-sm-12 bg-white">
+              <div class="col-6 col-sm-6">
+              </div>
+              <div class="col-6 col-sm-6">
+              </div>
+            </div>
+          </div>
+          <div *ngIf="exportDiv">
+            <span class="text-primary">export</span>
+          </div>
+        </div>
+      </div>
       <div class="" *ngIf="editMode">
         <app-warehouse-edit
           [warehouseId]="editLoadId"
-          (editModeEmitter)="editModeBack($event)"></app-warehouse-edit>
+          (editModeEmitter)="editModeBack($event)"
+        ></app-warehouse-edit>
       </div>
     </article>
   </div>

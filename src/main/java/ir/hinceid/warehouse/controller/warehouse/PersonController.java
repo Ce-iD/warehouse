@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-
 @RestController
 @RequestMapping("/rest/person")
 public class PersonController extends BaseController {
@@ -34,8 +33,15 @@ public class PersonController extends BaseController {
     // save or update
     @PostMapping("save")
     public Person savePerson(@RequestBody Person person) {
-        person.setId(UUID.randomUUID());
+        if (person.getId() == null)
+            person.setId(UUID.randomUUID());
         person.setCreatedDate(new Date());
         return iPersonRepository.save(person);
+    }
+
+    // delete
+    @DeleteMapping("delete/{personId}")
+    public void deletePerson(@PathVariable String personId) {
+        iPersonRepository.deleteById(UUID.fromString(personId));
     }
 }

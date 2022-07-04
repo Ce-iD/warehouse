@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { WarehouseCapacityService } from './warehouse-capacity.service';
+import { WarehouseInventoryService } from './warehouse-inventory.service';
 
 describe('WarehouseCapacityService', () => {
-  let service: WarehouseCapacityService;
+  let service: WarehouseInventoryService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(WarehouseCapacityService);
+    service = TestBed.inject(WarehouseInventoryService);
   });
 
   it('should be created', () => {

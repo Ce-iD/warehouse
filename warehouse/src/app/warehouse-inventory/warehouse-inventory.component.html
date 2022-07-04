@@ -1,0 +1,44 @@
+<div class="m-3 p-2">
+  <div class="card">
+    <header class="bg-light row m-0">
+      <h2 class="col-sm-7 lh-4"> {{ title }} {{ warehouseTitle }}</h2>
+      <div class="text-end col-sm-5 lh-lg">
+        <app-header-tools
+          (editModeEmitter)="editMode=$event"
+        ></app-header-tools>
+      </div>
+    </header>
+    <article class="">
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+        <tr class>
+          <th>نام كالا</th>
+          <th>نام انبار</th>
+          <th>موجودی</th>
+          <th>شماره سریال</th>
+          <th>تاريخ انقضاء</th>
+          <th>شماره قرارداد</th>
+<!--          <th></th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="" *ngFor="let warehouseInventory of warehouseInventories">
+          <td> {{ warehouseInventory.wareName }}</td>
+          <td> {{ warehouseInventory.warehouseTitle }}</td>
+          <td> {{ warehouseInventory.inventory }}</td>
+          <td> {{ warehouseInventory.serial }}</td>
+          <td> {{ warehouseInventory.expirationDate }}</td>
+          <td> {{ warehouseInventory.contractNumber }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </article>
+  </div>
+</div>
+<!--<mat-slider min="1" max="100" step="1" value="50"></mat-slider>-->
+<!--<mat-tree>-->
+<!--  <mat-tree-node> parent node </mat-tree-node>-->
+<!--  <mat-tree-node> &#45;&#45; child node1 </mat-tree-node>-->
+<!--  <mat-tree-node> &#45;&#45; child node2 </mat-tree-node>-->
+<!--</mat-tree>-->
+
