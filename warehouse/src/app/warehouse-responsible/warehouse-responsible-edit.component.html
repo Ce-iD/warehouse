@@ -1,0 +1,52 @@
+<div class="row m-0 p-0 col-12 col-sm-12">
+  <div class="row m-0 mt-3 p-0 col-6 col-sm-6">
+    <label for="" class="col-12 col-sm-12 control-label text-danger">انبار</label>
+    <select class="col-12 col-sm-12 form-control" [(ngModel)]="warehouseResponsible.warehouseId">
+      <option value="-1" [selected]="true">لطفا یک انبار را انتخاب نمایید</option>
+      <option class="" *ngFor="let warehouse of warehouses"  value="{{warehouse.id}}" >{{ warehouse.name }}</option>
+    </select>
+  </div>
+  <div class="row m-0 mt-3 p-0 col-6 col-sm-6">
+    <label for="" class="col-12 col-sm-12 control-label text-danger">مسئول</label>
+    <select class="col-12 col-sm-12 form-control" [(ngModel)]="warehouseResponsible.responsibleId">
+      <option value="-1" [selected]="true">لطفا یک مسئول برای انبار انتخاب نمایید</option>
+      <option class="" *ngFor="let person of persons"  value="{{person.id}}" >{{ person.firstName + ' ' + person.lastName }}</option>
+    </select>
+  </div>
+</div>
+<div class="row m-0 p-0 col-12 col-sm-12">
+  <div class="row m-0 mt-3 p-0 col-6 col-sm-6">
+    <input type="date" [(ngModel)]="warehouseResponsible.startDate">
+  </div>
+  <div class="row m-0 mt-3 p-0 col-6 col-sm-6">
+    <input type="date" [(ngModel)]="warehouseResponsible.endDate">
+  </div>
+</div>
+<div class="row m-0 p-0 col-12 col-sm-12">
+  <div class="row m-0 mt-3 p-0 col-6 col-sm-6">
+    <label for="" class="col-12 col-sm-12 control-label">وضعیت</label>
+    <input type="checkbox" [(ngModel)]="warehouseResponsible.status">
+  </div>
+  <div class="row m-0 mt-3 p-0 col-6 col-sm-6">
+  </div>
+</div>
+<div class="row m-0 mt-3 p-0 col-12 col-sm-12">
+    <span style="width: 8rem;">
+    <button class="btn btn-primary w-100" (click)="save()">
+      ثبت
+      <i class="fa fa-save"></i>
+    </button>
+    </span>
+  <span style="width: 8rem;">
+    <button class="btn btn-danger w-100">
+      بازنشانی
+      <i class="fa fa-refresh"></i>
+    </button>
+    </span>
+  <span style="width: 8rem;">
+    <button class="btn btn-warning w-100" (click)="switchToGrid()">
+      بازگشت
+      <i class="fa fa-backspace"></i>
+    </button>
+    </span>
+</div>

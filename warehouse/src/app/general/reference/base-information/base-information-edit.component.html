@@ -1,0 +1,86 @@
+<div class="row m-0 p-0 col-12 col-sm-12 h-100">
+    <label for="" class="col-12 col-sm-12 control-label text-danger">اطلاعات اوليه</label>
+  <div class="row m-0 mt-3 p-0 col-5 col-sm-5">
+    <select class="form-control m-auto" (change)="selectBaseInformation()" [(ngModel)]="baseInformationHeader">
+      <option value="">اطلاعات اوليه مدنظر را انتخاب نماييد</option>
+      <option value="gender">جنسيت</option>
+      <option value="wareType">نوع كالا</option>
+      <option value="wareUnit">واحد كالا</option>
+    </select>
+    <p></p>
+  </div>
+  <div class="col-1 col-sm-1"></div>
+  <div class="row m-0 mt-3 p-0 col-5 col-sm-5">
+    <table *ngIf="editMode" class="table table-bordered table-striped table-hover">
+      <thead>
+      <tr>
+        <th>{{ baseInformationTitle }}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let baseInformation of baseInformations">
+        <td *ngIf="baseInformationHeader == 'gender'"> {{ baseInformation.gender }}</td>
+        <td *ngIf="baseInformationHeader == 'wareType'"><span *ngIf="baseInformation.wareType != null"> {{ baseInformation.wareType }}</span></td>
+        <td *ngIf="baseInformationHeader == 'wareUnit'"> {{ baseInformation.wareUnit }}</td>
+      </tr>
+      <tr *ngIf="plusMode">
+        <td>
+          <div class="col-5 col-sm-5">
+          <input type="text" class="form-control" *ngIf="baseInformationHeader == 'gender'" [(ngModel)]="baseInformation.gender">
+          <input type="text" class="form-control" *ngIf="baseInformationHeader == 'wareType'" [(ngModel)]="baseInformation.wareType">
+          <input type="text" class="form-control" *ngIf="baseInformationHeader == 'wareUnit'" [(ngModel)]="baseInformation.wareUnit">
+          </div>
+<!--          <button (click)="save()" class="btn btn-primary col-3 col-sm-3">ثبت</button>-->
+        </td>
+      </tr>
+      <tr *ngIf="editMode">
+        <td><i class="fa fa-plus" (click)="plusMode = !plusMode"></i></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!--    <input class="col-12 col-sm-12 form-control" [(ngModel)]="baseInformation.gender">-->
+  <!--  <div class="row m-0 mt-3 p-0 col-6 col-sm-6">-->
+  <!--    <label for="" class="col-12 col-sm-12 control-label text-danger">نوع کالا</label>-->
+  <!--    <select class="col-12 col-sm-12 form-control" [(ngModel)]="baseInformation.wareType">-->
+  <!--      <option value="-1" [selected]="true">لطفا نوع کالا انتخاب نمایید</option>-->
+  <!--      &lt;!&ndash;      <option class="" *ngFor="let person of persons"  value="{{person.id}}" >{{ person.firstName + ' ' + person.lastName }}</option>&ndash;&gt;-->
+  <!--    </select>-->
+  <!--  </div>-->
+  <!--</div>-->
+  <!--<div class="row m-0 p-0 col-12 col-sm-12">-->
+  <!--  <div class="row m-0 mt-3 p-0 col-6 col-sm-6">-->
+  <!--    <label for="" class="col-12 col-sm-12 control-label text-danger">واحد کالا</label>-->
+  <!--    <select class="form-control" [(ngModel)]="baseInformation.wareUnit">-->
+  <!--      <option>واحد کالا را انتخاب نمایید</option>-->
+  <!--    </select>-->
+  <!--  </div>-->
+  <!--  <div class="row m-0 mt-3 p-0 col-6 col-sm-6">-->
+  <!--    <label for="" class="col-12 col-sm-12 control-label">وضعیت</label>-->
+  <!--    <input type="checkbox" [(ngModel)]="ware.status">-->
+  <!--  </div>-->
+  <!--  <div class="row m-0 mt-3 p-0 col-6 col-sm-6">-->
+  <!--  </div>-->
+  <!--</div>-->
+  <div class="row m-0 mt-3 p-0 col-12 col-sm-12">
+    <span style="width: 8rem;">
+    <button class="btn btn-primary w-100" (click)="save()">
+      ثبت
+      <i class="fa fa-save"></i>
+    </button>
+    </span>
+    <span style="width: 8rem;">
+    <button class="btn btn-danger w-100">
+      بازنشانی
+      <i class="fa fa-refresh"></i>
+    </button>
+    </span>
+    <span style="width: 8rem;">
+    <button class="btn btn-warning w-100" (click)="switchToGrid()">
+      بازگشت
+      <i class="fa fa-backspace"></i>
+    </button>
+    </span>
+  </div>
+</div>

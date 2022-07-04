@@ -1,0 +1,68 @@
+<div class="m-3 p-2">
+  <div class="card">
+    <header class="bg-light row m-0">
+      <h2 class="col-sm-7 lh-4" *ngIf="!editMode; else editModeTitle">{{ title }} {{ baseInformationTitle }}</h2>
+      <ng-template #editModeTitle>
+        <h2 class="col-sm-7 lh-4">
+<!--          تعریف انبار جدید-->
+        </h2>
+      </ng-template>
+      <div class="text-end col-sm-5 lh-lg">
+        <span>
+        <app-header-tools
+          (editModeEmitter)="editModeBack($event)"
+          (reloadEmitter)="reload()"
+          [editMode]="editMode"
+        ></app-header-tools>
+        </span>
+      </div>
+    </header>
+    <article class="">
+      <table class="table table-bordered table-striped table-hover"
+             *ngIf="!editMode">
+        <thead>
+        <tr class>
+          <th>جنسیت</th>
+          <th>نوع کالا</th>
+          <th>واحد کالا</th>
+<!--          &lt;!&ndash;          <th>تاریخ ثبت</th>&ndash;&gt;-->
+<!--          &lt;!&ndash;          <th>وضعیت</th>&ndash;&gt;-->
+          <th>عملیات</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="" *ngFor="let baseInformation of baseInformations"
+            (dblclick)="switchToEditMode(baseInformation.id)">
+          <td> {{ baseInformation.gender }}</td>
+          <td> {{ baseInformation.wareType }}</td>
+          <td> {{ baseInformation.wareUnit }}</td>
+<!--          &lt;!&ndash;          <td *ngIf="baseInformation.status; else deactive"> فعال</td>&ndash;&gt;-->
+<!--          &lt;!&ndash;          <ng-template #deactive>&ndash;&gt;-->
+<!--          &lt;!&ndash;            <td> غیر فعال</td>&ndash;&gt;-->
+<!--          &lt;!&ndash;          </ng-template>&ndash;&gt;-->
+<!--          <td>-->
+<!--            <i class="fa fa-trash text-danger" (click)="deleteBaseInformation(baseInformation)"></i>&nbsp;-->
+<!--            &lt;!&ndash;            <i class="fa fa-arrow-up text-info" (click)="importWare(warehouse)"></i>&nbsp;&ndash;&gt;-->
+<!--            &lt;!&ndash;            <i class="fa fa-arrow-down text-danger" (click)="exportWare(warehouse)"></i>&ndash;&gt;-->
+<!--          </td>-->
+        </tr>
+        </tbody>
+      </table>
+      <div class="" *ngIf="editMode">
+        <app-base-information-edit
+                  [baseInformationId]="editLoadId"
+                  (editModeEmitter)="editModeBack($event)"
+        ></app-base-information-edit>
+      </div>
+    </article>
+  </div>
+</div>
+
+<div class="bg-white">
+  <app-tree>
+  </app-tree>
+  <app-tree>
+  </app-tree>
+  <app-tree>
+  </app-tree>
+</div>

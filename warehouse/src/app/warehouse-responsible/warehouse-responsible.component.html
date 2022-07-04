@@ -1,0 +1,54 @@
+<div class="m-3 p-2">
+  <div class="card">
+    <header class="bg-light row m-0">
+      <h2 class="col-sm-7 lh-4" *ngIf="!editMode; else editModeTitle">{{ title }} {{ warehouseResponsibleTitle }}</h2>
+      <ng-template #editModeTitle>
+        <h2 class="col-sm-7 lh-4">
+          {{ editModeTitle }}
+        </h2>
+      </ng-template>
+      <div class="text-end col-sm-5 lh-lg">
+        <app-header-tools
+          (editModeEmitter)="editModeBack($event)"
+          (reloadEmitter)="reload()"
+          [editMode]="editMode"
+        ></app-header-tools>
+      </div>
+    </header>
+    <article class="">
+      <table class="table table-bordered table-striped table-hover"
+             *ngIf="!editMode">
+        <thead>
+        <tr class>
+          <th>انبار</th>
+          <th>مسئول</th>
+          <th>وضعیت</th>
+          <th>تاریخ شروع مسئولیت</th>
+          <th>تاریخ پایان مسئولیت</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="" *ngFor="let warehouseResponsible of warehouseResponsibles"
+            (dblclick)="switchToEditMode(warehouseResponsible.id)"
+        >
+          <td> {{ warehouseResponsible.warehouseTitle }}</td>
+          <td> {{ warehouseResponsible.responsibleName }}</td>
+          <td *ngIf="warehouseResponsible.status;else deactive">فعال</td>
+          <ng-template #deactive>
+            <td>غیر فعال</td>
+          </ng-template>
+          <td>{{ warehouseResponsible.startDate }}</td>
+          <td>{{ warehouseResponsible.endDate }}</td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="" *ngIf="editMode">
+        <app-warehouse-responsible-edit
+          [warehouseResponsibleId]="editLoadId"
+          (editModeEmitter)="editModeBack($event)"
+        >
+        </app-warehouse-responsible-edit>
+      </div>
+    </article>
+  </div>
+</div>

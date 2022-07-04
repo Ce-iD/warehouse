@@ -2,12 +2,11 @@ package ir.hinceid.warehouse.model.warhouse;
 
 import com.sun.istack.NotNull;
 import ir.hinceid.warehouse.model.general.BaseModel;
+import ir.hinceid.warehouse.model.references.BaseInformation;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -19,17 +18,13 @@ public class Ware extends BaseModel {
     @Column(name = "name")
     public String name;
 
-    @NotNull
-    @Column(name = "serial")
-    public String serial;
+    @ManyToOne
+    @JoinColumn(name = "ware_type_id")
+    public BaseInformation wareType;
 
-    @NotNull
-    @Column(name = "contract_number")
-    public String contractNumber;
-
-    @NotNull
-    @Column(name = "expiration_date")
-    public String expirationDate;
+    @ManyToOne
+    @JoinColumn(name = "ware_unit_id")
+    public BaseInformation wareUnit;
 
     @NotNull
     @Column(name = "status")
