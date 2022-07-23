@@ -1,6 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {BaseInformation} from "./base-information";
-// import {MatTreeModule} from '@angular/material/tree';
 import {BaseInformationService} from "./base-information.service";
 
 @Component({
@@ -19,7 +18,6 @@ export class BaseInformationComponent implements OnInit {
   public editMode: boolean = true;
   public editLoadId: string = '';
 
-  // public tree: MatTreeModule;
   constructor(
     private BaseInformationService: BaseInformationService,
   ) {

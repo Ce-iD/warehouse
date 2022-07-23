@@ -1,1 +1,32 @@
-<p>warehouse-inventory-edit works!</p>
+<div class="row m-0 p-0 col-12 col-sm-12 bg-white">
+  <div class="col-6 col-sm-6">
+    <label class="control-label">کالا</label>
+    <select class="form-control" [(ngModel)]="warehouseInventory.wareId">
+      <option value="">كالای مد نظر را انتخاب نمایید</option>
+      <option *ngFor="let ware of wares" value="{{ ware.id }}">{{ ware.name }}</option>
+    </select>
+  </div>
+  <div class="col-6 col-sm-6">
+    <label class="control-label">تعداد</label>
+    <input type="text" class="form-control" [(ngModel)]="warehouseInventory.inventory">
+  </div>
+</div>
+<div class="row m-0 p-0 col-12 col-sm-12 bg-white">
+  <div class="col-6 col-sm-6">
+    <label class="control-label">سریال</label>
+    <input type="text" class="form-control" [(ngModel)]="warehouseInventory.serial">
+  </div>
+  <div class="col-6 col-sm-6">
+    <label class="control-label">شماره قرارداد</label>
+    <input type="text" class="form-control" [(ngModel)]="warehouseInventory.contractNumber">
+  </div>
+</div>
+<div class="row m-0 p-0 col-12 col-sm-12 bg-white">
+  <div class="col-6 col-sm-6">
+  </div>
+  <div class="col-6 col-sm-6">
+  </div>
+</div>
+<app-operation-bottom
+  (buttonEmitter)="buttonClicked($event)"
+></app-operation-bottom>

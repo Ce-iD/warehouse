@@ -28,7 +28,6 @@ export class WareEditComponent implements OnInit {
       this.onLoad();
     }
     this.wareService.getAllBaseInformation().subscribe(baseInformation => {
-      console.log(baseInformation);
       this.baseInformations = baseInformation;
     });
   }
@@ -43,7 +42,6 @@ export class WareEditComponent implements OnInit {
   save() {
     this.wareService.saveWare(this.ware).subscribe(ware => {
       success: {
-
         this.switchToGrid();
       }
     })

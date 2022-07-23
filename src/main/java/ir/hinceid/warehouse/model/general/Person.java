@@ -1,6 +1,5 @@
 package ir.hinceid.warehouse.model.general;
 
-import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,23 +15,23 @@ public class Person extends BaseModel {
 
     public static final String tableName = "person";
 
-    @NotNull
+//    @NotNull
     @Column(name = "first_name")
     public String firstName;
 
-    @NotNull
+//    @NotNull
     @Column(name = "last_name")
     public String lastName;
 
-    @NotNull
+//    @NotNull
     @Column(name = "user_name")
     public String userName;
 
-    @NotNull
+//    @NotNull
     @Column(name = "password")
     public String password;
 
-    @NotNull
+//    @NotNull
     @Column(name = "status")
     public Boolean status;
 

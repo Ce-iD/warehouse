@@ -23,7 +23,6 @@ export class WareService {
   }
 
   saveWare(ware: Ware): Observable<Object> {
-    console.log(ware);
     return this.httpClient.post(`${this.baseUrl}/save`, ware);
   }
 

@@ -42,54 +42,37 @@
           <td>
             <div>
               <i class="fa fa-trash text-danger" (click)="deleteWarehouse(warehouse)"></i>&nbsp;
-              <i class="fa fa-arrow-up text-info" (click)="importWare(warehouse)"></i>&nbsp;
-              <i class="fa fa-arrow-down text-danger" (click)="exportWare(warehouse)"></i>
+              <i class="fa fa-arrow-up text-info" (click)="importWare(warehouse.id)"></i>&nbsp;
+              <i class="fa fa-arrow-down text-danger" (click)="exportWare(warehouse.id)"></i>&nbsp;
+              <i class="fa fa-warehouse text-danger" (click)="switchToInventory(warehouse.id)"></i>
             </div>
           </td>
-          <!--          <td>-->
-          <!--          </td>-->
         </tr>
         </tbody>
       </table>
-      <div *ngIf="importDiv || exportDiv" style="position: absolute; top: 150px; left: 5px; z-index: 1;"
+      <div *ngIf="importDiv || exportDiv || showInventory"
+           style="position: absolute; top: 150px; left: 5px; z-index: 1;"
            class="bg-whit e w-100">
-        <div style="height: 400px; width: 70%;" class="row m-0 p-0 bg-dark m-auto w-70">
+        <div style="height: 400px; width: 70%;" class="row m-0 p-0 bg-da rk m-auto w-70">
           <div class="col-12 col-sm-12 bg-light h-10 p-0">
             <i class="fa fa-times pull-left m-3" (click)="closeModal()"></i>
           </div>
-          <div *ngIf="importDiv" class="p-0">
-            <div class="row m-0 p-0 col-12 col-sm-12 bg-white">
-              <div class="col-6 col-sm-6">
-                <label class="control-label">کالا</label>
-                <select class="form-control">
-                  <option value="">كالای مد نظر را انتخاب نمایید</option>
-                  <option *ngFor="let ware of wares" value="{{ ware.id }}">{{ ware.name }}</option>
-                </select>
-              </div>
-              <div class="col-6 col-sm-6">
-                <label class="control-label">تعداد</label>
-                <input type="text" class="form-control">
-              </div>
-            </div>
-            <div class="row m-0 p-0 col-12 col-sm-12 bg-white">
-              <div class="col-6 col-sm-6">
-                <label class="control-label">سریال</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="col-6 col-sm-6">
-                <label class="control-label">شماره قرارداد</label>
-                <input type="text" class="form-control">
-              </div>
-            </div>
-            <div class="row m-0 p-0 col-12 col-sm-12 bg-white">
-              <div class="col-6 col-sm-6">
-              </div>
-              <div class="col-6 col-sm-6">
-              </div>
-            </div>
-          </div>
+          <app-warehouse-inventory-edit
+            class="p-0"
+            *ngIf="importDiv"
+            [wares]="wares"
+            [warehouseId]="warehouseId"
+            (switchToGrid)="backFromWarehouseInventory($event)"
+          >
+          </app-warehouse-inventory-edit>
           <div *ngIf="exportDiv">
             <span class="text-primary">export</span>
+          </div>
+          <div *ngIf="showInventory">
+            <app-warehouse-inventory
+              [warehouseId]="warehouseId"
+            >
+            </app-warehouse-inventory>
           </div>
         </div>
       </div>

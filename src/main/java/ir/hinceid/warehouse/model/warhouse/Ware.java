@@ -1,6 +1,5 @@
 package ir.hinceid.warehouse.model.warhouse;
 
-import com.sun.istack.NotNull;
 import ir.hinceid.warehouse.model.general.BaseModel;
 import ir.hinceid.warehouse.model.references.BaseInformation;
 import lombok.Getter;
@@ -14,7 +13,7 @@ import javax.persistence.*;
 @Table(name = "ware")
 public class Ware extends BaseModel {
 
-    @NotNull
+//    @NotNull
     @Column(name = "name")
     public String name;
 
@@ -26,7 +25,7 @@ public class Ware extends BaseModel {
     @JoinColumn(name = "ware_unit_id")
     public BaseInformation wareUnit;
 
-    @NotNull
+//    @NotNull
     @Column(name = "status")
     public Boolean status;
 }

@@ -67,8 +67,6 @@ public class WareController extends BaseController {
             ware.setStatus(wareViewModel.getStatus());
         if (wareViewModel.getName() != null)
             ware.setName(wareViewModel.getName());
-//        if (wareViewModel.getTypeTitle() != null)
-//        if (wareViewModel.getUnitTitle() != null)
         ware.setCreatedDate(new Date());
         return iWareRepository.save(ware);
     }

@@ -1,6 +1,6 @@
 package ir.hinceid.warehouse.model.warhouse;
 
-import com.sun.istack.NotNull;
+//import com.sun.istack.NotNull;
 import ir.hinceid.warehouse.model.general.BaseModel;
 import ir.hinceid.warehouse.model.general.Person;
 import lombok.Getter;
@@ -17,22 +17,22 @@ import javax.persistence.Table;
 @Table(name = "warehouse_responsible")
 public class WarehouseResponsible extends BaseModel {
 
-    @NotNull
+//    @NotNull
     @ManyToOne
     @JoinColumn(name = "warehouse_id")
     public Warehouse warehouse;
 
-    @NotNull
+//    @NotNull
     @ManyToOne
     @JoinColumn(name = "person_id")
     public Person responsible;
 
-    @NotNull
+//    @NotNull
     public String startDate;
 
-    @NotNull
+//    @NotNull
     public String endDate;
 
-    @NotNull
+//    @NotNull
     public Boolean status;
 }

@@ -25,6 +25,11 @@ import {BaseInformationEditComponent} from "./general/reference/base-information
 import {TreeComponent} from "./general/utility/tree/tree.component";
 import {WarehouseInventoryEditComponent} from './warehouse-inventory/warehouse-inventory-edit.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ModalComponent } from './general/utility/modal/modal.component';
+import {OperationBottomComponent} from "./general/utility/operation-bottom/operation-bottom.component";
+import {jqxTreeModule} from "jqwidgets-ng/jqxtree";
+import {jqxExpanderModule} from "jqwidgets-ng/jqxexpander";
+// import {TreeModule} from "primeng/Tree";
 
 @NgModule({
   declarations: [
@@ -49,9 +54,13 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     BaseInformationEditComponent,
     TreeComponent,
     WarehouseInventoryEditComponent,
+    OperationBottomComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
+    // TreeModule,
+    jqxTreeModule, jqxExpanderModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,

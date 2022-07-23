@@ -4,6 +4,7 @@
       <h2 class="col-sm-7 lh-4"> {{ title }} {{ warehouseTitle }}</h2>
       <div class="text-end col-sm-5 lh-lg">
         <app-header-tools
+          (reloadEmitter)="reload()"
           (editModeEmitter)="editMode=$event"
         ></app-header-tools>
       </div>
@@ -27,7 +28,7 @@
           <td> {{ warehouseInventory.warehouseTitle }}</td>
           <td> {{ warehouseInventory.inventory }}</td>
           <td> {{ warehouseInventory.serial }}</td>
-          <td> {{ warehouseInventory.expirationDate }}</td>
+          <td> {{ warehouseInventory.expirationDate  ? warehouseInventory.expirationDate : 'ندارد' }}</td>
           <td> {{ warehouseInventory.contractNumber }}</td>
         </tr>
         </tbody>

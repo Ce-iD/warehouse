@@ -22,6 +22,8 @@ export class WarehouseComponent implements OnInit {
   public editLoadId: string = '';
   public importDiv: boolean = false;
   public exportDiv: boolean = false;
+  public showInventory: boolean = false;
+  public warehouseId: string = "";
 
   constructor(
     private warehouseService: WarehouseService,
@@ -62,7 +64,8 @@ export class WarehouseComponent implements OnInit {
     this.editMode = true;
   }
 
-  importWare(warehouse: Warehouse) {
+  importWare(warehouseId: string) {
+    this.warehouseId = warehouseId;
     this.wareService.getAllWare().subscribe(wares => {
       this.wares = wares;
     });
@@ -70,13 +73,29 @@ export class WarehouseComponent implements OnInit {
     this.importDiv = !this.importDiv;
   }
 
-  exportWare(warehouse: Warehouse) {
+  exportWare(warehouseId: string) {
+    this.warehouseId = warehouseId;
     this.importDiv = false;
     this.exportDiv = !this.exportDiv;
   }
 
+  switchToInventory(warehouseId: string) {
+    this.warehouseId = warehouseId;
+    this.importDiv = false;
+    this.exportDiv = false;
+    this.showInventory = !this.showInventory;
+  }
+
   closeModal() {
-    this.importDiv = this.importDiv = false;
-    this.exportDiv = this.exportDiv = false;
+    this.importDiv = false;
+    this.exportDiv = false;
+    this.showInventory = this.showInventory = false;
+  }
+
+  backFromWarehouseInventory($event: any) {
+    if ($event) {
+      this.importDiv = this.importDiv = false;
+      this.exportDiv = this.exportDiv = false;
+    }
   }
 }
